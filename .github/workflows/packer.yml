@@ -41,3 +41,9 @@ jobs:
 
       - name: Packer Build
         run: packer build -color=false -on-error=cleanup -debug .
+
+      # - name: Install dependencies
+      #   uses: upciti/wakemeops-action@v1
+      #   with:
+      #     packages: |
+      #       trivy=0.45.0*
