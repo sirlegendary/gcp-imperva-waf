@@ -6,4 +6,5 @@ source "googlecompute" "imperva" {
   disk_size                       = "160"
   ssh_username                    = "root"
   disable_default_service_account = true
+  use_os_login                    = false
 }
