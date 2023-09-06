@@ -8,4 +8,5 @@ source "googlecompute" "imperva" {
   disable_default_service_account = false
   use_os_login                    = false
   image_name                      = "imperva-{{timestamp}}"
+  image_storage_locations         = ["eu"]
 }
