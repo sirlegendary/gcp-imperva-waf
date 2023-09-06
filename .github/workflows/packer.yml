@@ -11,7 +11,7 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-    name: packer
+    name: Imperva Image Pipeline
     defaults:
       run:
         working-directory: packer
