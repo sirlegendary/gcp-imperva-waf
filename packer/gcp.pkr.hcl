@@ -7,4 +7,5 @@ source "googlecompute" "imperva" {
   ssh_username                    = "root"
   disable_default_service_account = true
   use_os_login                    = false
+  image_name                      = "imperva-{{timestamp}}"
 }
