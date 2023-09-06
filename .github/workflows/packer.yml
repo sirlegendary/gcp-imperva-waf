@@ -1,0 +1,43 @@
+name: Imperva image pipeline
+
+on:
+  push:
+    branches:
+      - "main"
+
+env:
+  PACKER_PRODUCT_VERSION: "latest" # "1.8.6" or: "latest" 
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    name: packer
+    defaults:
+      run:
+        working-directory: packer
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - id: 'auth'
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
+
+      - name: Run `packer init`
+        id: init
+        run: packer init .
+
+      - name: Run `packer validate`
+        id: validate
+        run: packer validate .
+
+      - name: Packer Build
+        run: packer build -color=false -on-error=cleanup -debug .

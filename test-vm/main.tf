@@ -1,19 +1,10 @@
-# resource "google_compute_address" "static-ip" {
-#   provider     = google
-#   name         = "static-ip"
-#   address_type = "EXTERNAL"
-#   network_tier = "PREMIUM"
-# }
-
 resource "google_compute_instance" "default" {
   provider     = google
-  name         = "imperva"
+  name         = "imperva-playground"
   machine_type = "e2-micro"
   network_interface {
     network = "default"
-    access_config {
-      nat_ip = google_compute_address.static-ip.address
-    }
+    access_config {}
   }
 
   metadata = {
@@ -22,18 +13,24 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "https://www.googleapis.com/compute/v1/projects/imperva-cloud-images-public/global/images/securesphere-waf-14-4-0-16-0-39028-europe"
-      #   "ubuntu-os-cloud/ubuntu-2004-focal-v20220712"
+      size  = 250
+      image = "ubuntu-os-cloud/ubuntu-2004-focal-v20220712"
     }
   }
-  # Some changes require full VM restarts
-  # consider disabling this flag in production
-  #   depending on your needs
-  allow_stopping_for_update = true
 
-  #   service_account {
-  #     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-  #     email = "tf-service-account@gl-compliance-governance.iam.gserviceaccount.com"
-  #     scopes = ["cloud-platform"]
-  #   }
+  # allow_stopping_for_update = true
+
+  metadata_startup_script = "./setup.sh"
 }
+
+resource "google_compute_firewall" "wetty" {
+  name    = "imperva-wetty"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3000"]
+  }
+  source_ranges = ["0.0.0.0/0"]
+}
+
