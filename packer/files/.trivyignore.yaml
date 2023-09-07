@@ -1,0 +1,53 @@
+vulnerabilities:
+  - id: CVE-2019-19844
+  - id: CVE-2020-7471
+  - id: CVE-2016-9014
+  - id: CVE-2019-6975
+  - id: CVE-2020-9402
+  - id: CVE-2021-44420
+    paths:
+      - "usr/lib64/google-cloud-sdk/platform/gsutil/third_party/oauth2client/samples/django/django_user/requirements.txt"
+      - "usr/lib64/google-cloud-sdk/platform/gsutil/third_party/oauth2client/samples/django/google_user/requirements.txt"
+  - id: CVE-2017-12626
+  - id: CVE-2021-23926
+    paths:
+      - "opt/SecureSphere/server/SecureSphere/jakarta-tomcat-secsph/webapps/SecureSphere/WEB-INF/classes/META-INF/maven/com.imperva.common/secsph-dev/pom.xml"
+  - id: CVE-2018-1000201
+  - id: CVE-2022-30123
+  - id: CVE-2020-8161
+  - id: CVE-2020-8184
+  - id: CVE-2022-30122
+  - id: CVE-2022-44570
+  - id: CVE-2022-44571
+  - id: CVE-2022-44572
+  - id: CVE-2023-27530
+  - id: CVE-2022-29970
+  - id: CVE-2022-45442
+    paths:
+      - "usr/lib/pcsd/Gemfile.lock"
+  - id: CVE-2020-8165
+  - id: CVE-2023-22796
+  - id: CVE-2014-10077
+  - id: CVE-2020-8130
+    paths:
+      - "usr/lib/pcsd/vendor/bundle/ruby/gems/backports-3.9.1/Gemfile.lock"
+    statement: Accept the risk
+    expired_at: 2023-09-20
+
+# misconfigurations:
+#   - id: AVD-DS-0001
+#   - id: AVD-DS-0002
+#     paths:
+#       - "docs/Dockerfile"
+#     statement: The image needs root privileges
+
+# secrets:
+#   - id: aws-access-key-id
+#   - id: aws-secret-access-key
+#     paths:
+#       - "foo/bar/aws.secret"
+
+# licenses:
+#   - id: GPL-3.0 # License name is used as ID
+#     paths:
+#       - "usr/share/gcc/python/libstdcxx/v6/__init__.py"
