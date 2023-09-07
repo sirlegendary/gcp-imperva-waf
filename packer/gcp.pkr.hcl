@@ -5,7 +5,6 @@ source "googlecompute" "imperva" {
   source_image                    = "securesphere-waf-14-4-0-16-0-39028-europe"
   disk_size                       = 160
   ssh_username                    = "root"
-  # use_os_login                    = false
-  image_name                      = "imperva-{{timestamp}}"
+  image_name                      = "imperva-14-4-0{{timestamp}}"
   image_storage_locations         = ["eu"]
 }
