@@ -5,12 +5,10 @@ build {
 
   provisioner "shell" {
     inline = [
-      "apt-get update -qq",
-      "apt-get install -qq -y python3 python3-pip curl jq",
-      "apt-get upgrade -y -qq",
+      "admin",
       "curl -fSL https://github.com/aquasecurity/trivy/releases/download/v0.45.0/trivy_0.45.0_Linux-64bit.tar.gz | tar xz",
-      "./trivy fs --exit-code 1 -s HIGH,CRITICAL /",
-      "apt-get clean all"
+      # /usr/local/bin
+      "./trivy fs --timeout 2h --scanners vuln --exit-code 1 -s HIGH,CRITICAL /",
     ]
   }
 
